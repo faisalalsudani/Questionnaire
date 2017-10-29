@@ -1,0 +1,16 @@
+<%= form_for [@exam, @question] do |f|  %>
+<%= f.text_field :title, class: "form-control" %>
+<br>
+<%= f.label :sort, 'Yes' %>
+<%= radio_button_tag 'question[sort][]','Yes_No', id: 'sort'%><br>
+<%= f.label :sort, 'Open question' %>
+<%= radio_button_tag 'question[sort][]','open_question', id: 'sort'%><br>
+<%= f.label :sort, 'Number' %> 
+<%= radio_button_tag 'question[sort][]','number', id: 'sort'%><br>
+<br>
+<p>Timer</p>
+<%= f.label :timer, 'Yes' %>
+<%= f.radio_button :timer, "yes", id: "yes" %>
+<br>
+<%= f.submit "Submit", class: "btn btn-lg  btn-primary add-pair" %>
+<% end %>

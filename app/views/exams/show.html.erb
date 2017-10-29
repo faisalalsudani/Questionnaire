@@ -1,0 +1,12 @@
+<h2><%= @exam.title %></h2>
+<br>
+<%= link_to "Delete exam", exam_path(@exam.id), method: :delete, data: {confirm: "NOTE: Deleting an exam will delete all associated questions. \nDo you wish to continue?" }, class: "btn btn-danger" %>
+<hr>
+<h4>Add new question</h4>
+<%= render 'newQuestionForm' %>
+
+<ul>
+  <% @exam.questions.each do |q| %>
+    <li id="<%= q.id %>"><%= q.title %></li>
+  <% end %>
+</ul>
