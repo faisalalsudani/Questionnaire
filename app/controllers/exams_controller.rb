@@ -2,6 +2,7 @@ class ExamsController < ApplicationController
   def index
     @exams = Exam.all
     @questions = Question.new
+    @answers = Answer.new
   end
 
   def new
@@ -21,6 +22,10 @@ class ExamsController < ApplicationController
     @exam = Exam.find(params[:id])
     @questions = @exam.questions
     @question = Question.new
+
+    @answers = @question.answers
+    @answer = Answer.new
+
   end
 
   def destroy

@@ -8,5 +8,8 @@
 <ul>
   <% @exam.questions.each do |q| %>
     <li id="<%= q.id %>"><%= q.title %></li>
+    <% q.answers.each do |a| %>
+      <%= a.title %>
+    <% end %>
   <% end %>
 </ul>

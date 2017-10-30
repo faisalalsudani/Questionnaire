@@ -5,12 +5,16 @@
 <%= radio_button_tag 'question[sort][]','Yes_No', id: 'sort'%><br>
 <%= f.label :sort, 'Open question' %>
 <%= radio_button_tag 'question[sort][]','open_question', id: 'sort'%><br>
-<%= f.label :sort, 'Number' %> 
+<%= f.label :sort, 'Number' %>
 <%= radio_button_tag 'question[sort][]','number', id: 'sort'%><br>
 <br>
 <p>Timer</p>
 <%= f.label :timer, 'Yes' %>
 <%= f.radio_button :timer, "yes", id: "yes" %>
+<br>
+<%= f.fields_for :answers, [@question.answers.build] do |x| %>
+  <%= x.text_field :title %>
+<% end %>
 <br>
 <%= f.submit "Submit", class: "btn btn-lg  btn-primary add-pair" %>
 <% end %>

@@ -13,6 +13,7 @@ class QuestionsController < ApplicationController
     exam = Exam.find(params[:exam_id])
     @question = exam.questions.build
     @question = Question.new
+    @question.answers.build
   end
 
   def create
@@ -21,7 +22,7 @@ class QuestionsController < ApplicationController
     @question = exam.questions.create(question_params)
 
       if @question.save
-         redirect_to @question.exam
+        redirect_to @question.exam, notice: "Exam created!"
       else
         render :new
       end
@@ -56,15 +57,7 @@ class QuestionsController < ApplicationController
 
   private
   def question_params
-    params.require(:question).permit(
-      :title,
-      :timer,
-      :correct_answer,
-      :exam_id,
-      :answers => [],
-      :sort => []
-
-    )
+    params.require(:question).permit(:title,:timer,:exam_id,answers_attributes:[:title, :question_id], :sort => [])
   end
 
 end
