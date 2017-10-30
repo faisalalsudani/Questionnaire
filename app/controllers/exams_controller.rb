@@ -7,6 +7,7 @@ class ExamsController < ApplicationController
 
   def new
     @exam = Exam.new
+    3.times { @exam.questions.build }
   end
 
   def create

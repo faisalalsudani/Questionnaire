@@ -12,9 +12,16 @@
 <%= f.label :timer, 'Yes' %>
 <%= f.radio_button :timer, "yes", id: "yes" %>
 <br>
-<%= f.fields_for :answers, [@question.answers.build] do |x| %>
-  <%= x.text_field :title %>
+
+<p id="answers"></p>
+<%= nested_form_for @question do |q| %>
+  <%= q.fields_for :answers do |answer| %>
+    <%= answer.text_field :title %>
+    <%= answer.link_to_remove "Remove this answer" %>
+  <% end %>
+  <p><%= q.link_to_add "Add answer", :answers %></p>
 <% end %>
+
 <br>
 <%= f.submit "Submit", class: "btn btn-lg  btn-primary add-pair" %>
 <% end %>
