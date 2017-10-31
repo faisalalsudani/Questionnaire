@@ -4,8 +4,8 @@
       <%= f.text_field :title %>
     </div>
     <div class="field">
-      <%= f.check_box :correct %>
-      <%= f.label :correct %>
+      <%= f.label :correct, 'correct' %>
+      <%= f.radio_button :correct, "correct", id: "correct" %>
     </div>
     <%= link_to_remove_association "remove answer", f %>
   </div>
