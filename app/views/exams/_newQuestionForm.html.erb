@@ -12,7 +12,7 @@
 <%= f.label :timer, 'Yes' %>
 <%= f.radio_button :timer, "yes", id: "yes" %>
 <br>
-<h3>Tasks</h3>
+<h3>Answers</h3>
   <div id='answers'>
     <%= f.fields_for :answers do |answer| %>
       <%= render 'answer_fields', :f => answer %>

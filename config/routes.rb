@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     resources :questions
   end
 
+  resources :exams do
+    resources :attempts
+  end
+
   resources :questions do
     resources :answers
   end
