@@ -1,15 +1,39 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+  Add new question
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add new question</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= render 'newQuestionForm' %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
 <h2><%= @exam.title %></h2>
 <br>
 <%= link_to "Delete exam", exam_path(@exam.id), method: :delete, data: {confirm: "NOTE: Deleting an exam will delete all associated questions. \nDo you wish to continue?" }, class: "btn btn-danger" %>
 <hr>
-<h4>Add new question</h4>
-<%= render 'newQuestionForm' %>
 
-<ul>
-  <% @exam.questions.each do |q| %>
-    <li id="<%= q.id %>"><%= q.title %></li>
-    <% q.answers.each do |a| %>
-      <%= a.title %>
-    <% end %>
+
+<% @exam.questions.each do |q| %>
+  <h4 id="<%= q.id %>"><%= q.title %></h4>
+  <% q.answers.each do |a| %>
+  <div class="radio">
+    <label><input type="radio" name="optradio"><%= a.title %></label>
+  </div>
   <% end %>
-</ul>
+<% end %>
