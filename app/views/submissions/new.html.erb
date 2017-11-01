@@ -1,0 +1,25 @@
+<%= form_for [@exam, @submission]  do |f| %>
+
+  <% @questions.each do |question| %>
+    <p><%= question.title %></p>
+    <ul>
+      <% question.answers.each do |answer| %>
+      <li>
+
+        <%= @chosen_option = answer.title %>
+
+        <% answer.options.each do |option| %>
+          <%= option "test" %>
+        <% end %>
+
+      </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+
+<br>
+<br>
+<%= f.hidden_field :user_id, :value => current_user.id %>
+<%= f.submit "Submit", class: "btn  btn-primary " %>
+<% end %>

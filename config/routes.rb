@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   end
 
   resources :exams do
-    resources :submitions
+    resources :submissions
   end
+
 
   resources :questions do
     resources :answers
