@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
 
   resources :exams do
-    resources :submitions
+    resources :submitions, :only => [:new, :create]
   end
 
   resources :questions do
