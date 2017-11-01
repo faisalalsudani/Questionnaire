@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171031172139) do
+ActiveRecord::Schema.define(version: 20171101090335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20171031172139) do
   create_table "submitions", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "exam_id"
+    t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["exam_id"], name: "index_submitions_on_exam_id"
