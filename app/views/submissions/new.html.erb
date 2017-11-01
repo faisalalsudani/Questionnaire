@@ -8,8 +8,8 @@
 
         <%= @chosen_option = answer.title %>
 
-        <% answer.options.each do |option| %>
-          <%= option "test" %>
+        <%= f.fields_for :option do |o| %>
+          <%= render 'option_fields', :f => o %>
         <% end %>
 
       </li>

@@ -31,9 +31,7 @@ class SubmissionsController < ApplicationController
     params.require(:submission).permit(
       :exam_id,
       :user_id,
-      :option,
-      questions_attributes:[:title,:timer,:exam_id],
-      answers_attributes:[:title,:question_id]
+      options_attributes: [:answer_id]
     )
   end
 end
