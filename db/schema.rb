@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171101090335) do
+ActiveRecord::Schema.define(version: 20171101130944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,13 @@ ActiveRecord::Schema.define(version: 20171101090335) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "options", force: :cascade do |t|
+    t.bigint "answer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["answer_id"], name: "index_options_on_answer_id"
+  end
+
   create_table "questions", force: :cascade do |t|
     t.string "title"
     t.string "photo"
@@ -39,6 +46,16 @@ ActiveRecord::Schema.define(version: 20171101090335) do
     t.boolean "timer"
     t.string "sort", default: [], array: true
     t.index ["exam_id"], name: "index_questions_on_exam_id"
+  end
+
+  create_table "submissions", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "exam_id"
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exam_id"], name: "index_submissions_on_exam_id"
+    t.index ["user_id"], name: "index_submissions_on_user_id"
   end
 
   create_table "submitions", force: :cascade do |t|
@@ -69,7 +86,10 @@ ActiveRecord::Schema.define(version: 20171101090335) do
   end
 
   add_foreign_key "answers", "questions"
+  add_foreign_key "options", "answers"
   add_foreign_key "questions", "exams"
+  add_foreign_key "submissions", "exams"
+  add_foreign_key "submissions", "users"
   add_foreign_key "submitions", "exams"
   add_foreign_key "submitions", "users"
 end
