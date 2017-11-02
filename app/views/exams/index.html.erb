@@ -1,3 +1,3 @@
 <% @exams.each do |exam| %>
-  <p><%= exam.title %></p>
+  <h4><%= link_to exam.title, exam_path(exam) %></h4>
 <% end %>
