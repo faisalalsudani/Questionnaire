@@ -1,23 +1,17 @@
 <%= form_for [@exam, @submission]  do |f| %>
-
   <% @questions.each do |question| %>
     <p><%= question.title %></p>
     <ul>
       <% question.answers.each do |answer| %>
       <li>
-
         <%= @chosen_option = answer.title %>
-
         <%= f.fields_for :option do |o| %>
           <%= render 'option_fields', :f => o %>
         <% end %>
-
       </li>
       <% end %>
     </ul>
   <% end %>
-
-
 <br>
 <br>
 <%= f.hidden_field :user_id, :value => current_user.id %>

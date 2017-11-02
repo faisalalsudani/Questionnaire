@@ -26,9 +26,13 @@
 <h2><%= @exam.title %></h2>
 <br>
 <%= link_to "Delete exam", exam_path(@exam.id), method: :delete, data: {confirm: "NOTE: Deleting an exam will delete all associated questions. \nDo you wish to continue?" }, class: "btn btn-danger" %>
+<% @exam_path = exam_path(@exam.id) %>
+<a href="<%= @exam_path %>/submissions/new">
+  <button class="btn btn-success">Take exam</button>
+</a>
 <hr>
 
-
+<!--
 <% @exam.questions.each do |q| %>
   <h4 id="<%= q.id %>"><%= q.title %></h4>
   <% q.answers.each do |a| %>
@@ -36,4 +40,4 @@
     <label><input type="radio" name="optradio"><%= a.title %></label>
   </div>
   <% end %>
-<% end %>
+<% end %> -->
