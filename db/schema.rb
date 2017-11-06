@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171101130944) do
+ActiveRecord::Schema.define(version: 20171106113814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,7 +54,12 @@ ActiveRecord::Schema.define(version: 20171101130944) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "answer_id"
+    t.bigint "question_id"
+    t.string "answers", default: [], array: true
+    t.index ["answer_id"], name: "index_submissions_on_answer_id"
     t.index ["exam_id"], name: "index_submissions_on_exam_id"
+    t.index ["question_id"], name: "index_submissions_on_question_id"
     t.index ["user_id"], name: "index_submissions_on_user_id"
   end
 
@@ -88,7 +93,9 @@ ActiveRecord::Schema.define(version: 20171101130944) do
   add_foreign_key "answers", "questions"
   add_foreign_key "options", "answers"
   add_foreign_key "questions", "exams"
+  add_foreign_key "submissions", "answers"
   add_foreign_key "submissions", "exams"
+  add_foreign_key "submissions", "questions"
   add_foreign_key "submissions", "users"
   add_foreign_key "submitions", "exams"
   add_foreign_key "submitions", "users"

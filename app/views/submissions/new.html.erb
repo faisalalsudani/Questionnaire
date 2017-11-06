@@ -1,17 +1,16 @@
 <%= form_for [@exam, @submission]  do |f| %>
-  <% @questions.each do |question| %>
-    <p><%= question.title %></p>
-    <ul>
-      <% question.answers.each do |answer| %>
-      <li>
-        <%= @chosen_option = answer.title %>
-        <%= f.fields_for :option do |o| %>
-          <%= render 'option_fields', :f => o %>
-        <% end %>
-      </li>
-      <% end %>
-    </ul>
+
+<%= @total_questions = @questions.length %>
+
+<% @questions.each do |question| %>
+  <p><%= question.title %></p>
+  <% question.answers.each do |answer| %>
+    <p><%= answer.title %></p>
+    <span><%= f.radio_button :answers, "#{answer.id}"%></span>
   <% end %>
+<% end %>
+
+
 <br>
 <br>
 <%= f.hidden_field :user_id, :value => current_user.id %>
