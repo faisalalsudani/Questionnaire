@@ -5,13 +5,8 @@
     <ul>
       <% question.answers.each do |answer| %>
       <li>
-
-        <%= @chosen_option = answer.title %>
-
-        <%= f.fields_for :option do |o| %>
-          <%= render 'option_fields', :f => o %>
-        <% end %>
-
+        <%= @chosen_option = answer.id %>
+        <%= f.radio_button :answer_id, "#{@chosen_option}", id: "yes"%>
       </li>
       <% end %>
     </ul>
