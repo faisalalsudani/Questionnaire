@@ -1,3 +1,7 @@
 <% @exams.each do |exam| %>
   <h4><%= link_to exam.title, exam_path(exam) %></h4>
 <% end %>
+
+<%= Quizzes.all.each do |quiz| %>
+  <p><% quiz %></p>
+<% end %>
