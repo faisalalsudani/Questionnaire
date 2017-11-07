@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171106113814) do
+ActiveRecord::Schema.define(version: 20171107153937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,15 @@ ActiveRecord::Schema.define(version: 20171106113814) do
     t.index ["exam_id"], name: "index_questions_on_exam_id"
   end
 
+  create_table "quizzes", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "exam_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exam_id"], name: "index_quizzes_on_exam_id"
+    t.index ["user_id"], name: "index_quizzes_on_user_id"
+  end
+
   create_table "submissions", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "exam_id"
@@ -73,6 +82,16 @@ ActiveRecord::Schema.define(version: 20171106113814) do
     t.index ["user_id"], name: "index_submitions_on_user_id"
   end
 
+  create_table "take_exams", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "exam_id"
+    t.string "answers", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exam_id"], name: "index_take_exams_on_exam_id"
+    t.index ["user_id"], name: "index_take_exams_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -93,10 +112,14 @@ ActiveRecord::Schema.define(version: 20171106113814) do
   add_foreign_key "answers", "questions"
   add_foreign_key "options", "answers"
   add_foreign_key "questions", "exams"
+  add_foreign_key "quizzes", "exams"
+  add_foreign_key "quizzes", "users"
   add_foreign_key "submissions", "answers"
   add_foreign_key "submissions", "exams"
   add_foreign_key "submissions", "questions"
   add_foreign_key "submissions", "users"
   add_foreign_key "submitions", "exams"
   add_foreign_key "submitions", "users"
+  add_foreign_key "take_exams", "exams"
+  add_foreign_key "take_exams", "users"
 end
