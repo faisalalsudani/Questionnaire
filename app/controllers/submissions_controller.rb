@@ -28,6 +28,6 @@ class SubmissionsController < ApplicationController
 
   private
   def submission_params
-    params.require(:submission).permit(:exam_id,:user_id,:answers => [])
+    params.require(:submission).permit(:exam_id, :user_id, answers_attributes:[:title,:correct, :question_id], :answers => [])
   end
 end
