@@ -14,15 +14,20 @@
 <%= f.radio_button :timer, "yes", id: "yes"%>
 <br>
 <br>
-  <%= f.label 'Question answers' %>
-  <div id='answers'>
+  <!-- <div id='answers'>
     <%= f.fields_for :answers do |answer| %>
       <%= render 'answer_fields', :f => answer %>
     <% end %>
     <div class='links'>
-      <%= link_to_add_association 'add answer', f, :answers, class: 'btn btn-primary' %>
     </div>
-  </div>
+  </div> -->
+  <%= f.label :answers %>
+  <%= f.text_field :answers, name: "question[answers][]" %>
+  <%= f.text_field :answers, name: "question[answers][]" %>
+  <%= f.text_field :answers, name: "question[answers][]" %>
+  <%= f.text_field :answers, name: "question[answers][]" %>
+
+
   <br>
   <%= f.submit 'Save', class: 'btn btn-success' %>
 

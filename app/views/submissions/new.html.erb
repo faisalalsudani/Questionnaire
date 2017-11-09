@@ -2,12 +2,10 @@
 
 <% @questions.each do |question| %>
   <p><%= question.title %></p>
-  <% question.answers.each do |answer| %>
-    <p><%= answer.title %> <span>
-      <!-- <%= f.radio_button :answers, "#{answer.title}" %> -->
-      <%= radio_button_tag 'submission[answers][]',"#{answer.title}", id: "#{answer.title}", class: "form-control"%><br>
-    </span></p>
+  <% question.answers.each do |a| %>
+    <p><%= a %> <span><%= radio_button_tag 'question[answers][]',"#{a}", id: "#{a}", class: "form-control"%></span></p>
   <% end %>
+
 <% end %>
 <br>
 <br>

@@ -2,9 +2,7 @@
 
 <% @questions.each do |question| %>
   <p><%= question.title %></p>
-  <% question.answers.each do |answer| %>
-    <p><%= answer.title %> <span><%= f.radio_button :answers, "#{answer.id}", id: "q1"%></span></p>
-  <% end %>
+  
 <% end %>
 
 <br>
