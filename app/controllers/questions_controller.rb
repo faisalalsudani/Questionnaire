@@ -57,7 +57,7 @@ class QuestionsController < ApplicationController
 
   private
   def question_params
-    params.require(:question).permit(:title,:timer,:exam_id,answers_attributes:[:title,:correct, :question_id], :sort => [])
+    params.require(:question).permit(:title,:timer,:exam_id, answers: [], sort: [])
   end
 
 end
