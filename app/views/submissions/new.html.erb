@@ -1,0 +1,17 @@
+<%= form_for [@exam, @submission]  do |f| %>
+
+<% @questions.each do |question| %>
+  <p><%= question.title %></p>
+  <% question.answers.each do |answer| %>
+    <p><%= answer.title %> <span>
+      <!-- <%= f.radio_button :answers, "#{answer.title}" %> -->
+      <%= radio_button_tag 'submission[answers][]',"#{answer.title}", id: "#{answer.title}", class: "form-control"%><br>
+    </span></p>
+  <% end %>
+<% end %>
+<br>
+<br>
+
+<%= f.hidden_field :user_id, :value => current_user.id %>
+<%= f.submit "Submit", class: "btn btn-primary " %>
+<% end %>
