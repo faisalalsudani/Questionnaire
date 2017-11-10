@@ -1,11 +1,20 @@
 <%= form_for [@exam, @submission]  do |f| %>
 
 <% @questions.each do |question| %>
-  <p><%= question.title %></p>
-  <% question.answers.each do |a| %>
-    <p><%= a %> <span><%= radio_button_tag 'question[answers][]',"#{a}", id: "#{a}", class: "form-control"%></span></p>
-  <% end %>
-
+  <div class="row question-container">
+    <p><%= question.title %></p>
+    <% @i = 0 %>
+    <% question.answers.each_with_index do |answer, index| %>
+      <p><%= answer %>
+        <span>
+          <% if index === @i %>
+            <%= radio_button_tag 'submission[answers][]',"#{answer}", id: "#{answer}", class: "form-control"%>
+          <% end %>
+        </span>
+      </p>
+      <% @i = @i + 1 %>
+    <% end %>
+  </div>
 <% end %>
 <br>
 <br>
