@@ -29,23 +29,6 @@ class QuestionsController < ApplicationController
 
   end
 
-  # def edit
-  #   artist = Artist.find(params[:artist_id])
-  #   @song = artist.songs.find(params[:id])
-  # end
-  #
-  # def update
-  #   artist = Artist.find(params[:artist_id])
-  #
-  #   @song = artist.songs.find(params[:id])
-  #
-  #   if @song.update_attributes(song_params)
-  #     redirect_to @song.artist, notice: "Song updated"
-  #   else
-  #     render :edit
-  #   end
-  #
-  # end
 
   def destroy
     @question = Question.find(params[:id])
@@ -57,7 +40,7 @@ class QuestionsController < ApplicationController
 
   private
   def question_params
-    params.require(:question).permit(:title,:timer,:exam_id, answers: [], sort: [])
+    params.require(:question).permit(:title, :timer, :exam_id, :correct, answers: [], sort: [])
   end
 
 end

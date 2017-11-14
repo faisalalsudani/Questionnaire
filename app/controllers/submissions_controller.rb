@@ -11,12 +11,20 @@ class SubmissionsController < ApplicationController
     @questions = @exam.questions
   end
 
+  def show
+    @exam = Exam.find(params[:exam_id])
+    @submission = @exam.submissions.find(params[:id])
+
+    @questions = @exam.questions.all
+
+  end
+
   def create
     exam = Exam.find(params[:exam_id])
     @submission = exam.submissions.create(submission_params)
 
     if @submission.save
-      redirect_to @submission.exam, notice: "submission!"
+      redirect_to action: "show", id: @submission
     else
       render :new
     end
