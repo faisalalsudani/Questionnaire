@@ -1,0 +1,10 @@
+<% @questions.each do |question| %>
+  <% question.answers.each_with_index do |answer, index| %>
+    <p>
+      <%= @answer = answer %>
+      <span>
+        <%= radio_button_tag "submission[answers][]", index %>
+      </span>
+    </p>
+  <% end %>
+<% end %>
