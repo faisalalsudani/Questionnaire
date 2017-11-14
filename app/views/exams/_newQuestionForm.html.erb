@@ -15,10 +15,18 @@
 <br>
 <br>
 <%= f.label :answers %> <br>
-<%= f.text_field :answers, name: "question[answers][]", class: "form-control" %> <br>
-<%= f.text_field :answers, name: "question[answers][]", class: "form-control" %> <br>
-<%= f.text_field :answers, name: "question[answers][]", class: "form-control" %> <br>
 <%= f.text_field :answers, name: "question[answers][]", class: "form-control" %>
+<%= f.radio_button :correct, "1"%>
+<br><br>
+<%= f.text_field :answers, name: "question[answers][]", class: "form-control" %>
+<%= f.radio_button :correct, "2"%>
+<br><br>
+<%= f.text_field :answers, name: "question[answers][]", class: "form-control" %>
+<%= f.radio_button :correct, "3"%>
+<br><br>
+<%= f.text_field :answers, name: "question[answers][]", class: "form-control" %>
+<%= f.radio_button :correct, "4"%>
+<br>
 
 
 <br>

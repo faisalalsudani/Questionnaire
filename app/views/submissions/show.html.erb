@@ -1,0 +1,30 @@
+<div class="row">
+  <h4><%= @exam.title %></h4>
+  <hr>
+
+  <% @score = 0 %>
+  <% @exam.questions.each do |question| %>
+    <p><% question.id %></p>
+    <% @submission.ann.each do |key, value| %>
+      <% @key = key %>
+      <% if question.id == key.to_i %>
+        <p>Given answer: <%= @given_anwer = value %></p>
+        <p><% @correct = question.correct - 1 %></p>
+        <p>Correct answer: <%= @correct_answer = question.answers[@correct] %></p>
+        <p>Resulte: <%= @correct_answer == @given_anwer %></p>
+        <% if @correct_answer == @given_anwer %>
+          <% @score = @score + 1 %>
+        <% end %>
+        <hr>
+      <% end %>
+    <% end %>
+  <% end %>
+  <%= @score %>
+
+  <% if @score > (@exam.questions.length / 2) %>
+    <p>Congrats</p>
+  <% end %>
+
+
+
+</div>
