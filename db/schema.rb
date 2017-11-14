@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171113183407) do
+ActiveRecord::Schema.define(version: 20171114123127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "answers", force: :cascade do |t|
     t.string "title"
@@ -48,6 +49,7 @@ ActiveRecord::Schema.define(version: 20171113183407) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "answers", default: [], array: true
+    t.hstore "ann", default: {}, null: false
     t.index ["exam_id"], name: "index_submissions_on_exam_id"
     t.index ["user_id"], name: "index_submissions_on_user_id"
   end

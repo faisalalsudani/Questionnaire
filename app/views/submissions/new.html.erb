@@ -1,20 +1,22 @@
 <%= form_for [@exam, @submission]  do |f| %>
 
-<% @questions.each do |question| %>
-  <p><%= question.title %></p>
-  <% question.answers.each do |answer| %>
-    <p>
-      <%= @answer = answer %>
-      <span>
-        <%= radio_button_tag 'submission[answers][]',"#{@answer}", class: "form-control"%><br>
-      </span>
-    </p>
-  <% end %>
-
-<% end %>
+  <ol class="questions">
+      <% @questions.each do |question| %>
+      <li>
+        <%= question.title %>
+        <ol class="answers">
+          <% question.answers.each_with_index do |answer, index| %>
+          <li>
+            <%= radio_button_tag("submission[ann][#{question.id}]", answer) %>
+            <%= label("answer_".concat(answer), answer) %>
+          </li>
+          <% end %>
+        </ol>
+      </li>
+      <% end %>
+  </ol>
 <br>
 <br>
-
 <%= f.hidden_field :user_id, :value => current_user.id %>
 <%= f.submit "Submit", class: "btn btn-primary " %>
 <% end %>
