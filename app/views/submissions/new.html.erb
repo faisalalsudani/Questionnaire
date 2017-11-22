@@ -1,6 +1,5 @@
 <%= form_for [@exam, @submission]  do |f| %>
-
-  <ol class="questions">
+  <ul class="questions">
       <% @questions.each do |question| %>
       <li>
         <%= question.title %>
@@ -13,8 +12,10 @@
           <% end %>
         </ol>
       </li>
+      <%= will_paginate @questions, :page_links => false %>
+
       <% end %>
-  </ol>
+  </ul>
 <br>
 <br>
 <%= f.hidden_field :user_id, :value => current_user.id %>
