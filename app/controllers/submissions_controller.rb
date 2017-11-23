@@ -8,7 +8,8 @@ class SubmissionsController < ApplicationController
   def new
     @exam = Exam.find(params[:exam_id])
     @submission = @exam.submissions.new
-    @questions = @exam.questions.paginate(:page => params[:page], :per_page => 1)
+    @questions_total = @exam.questions.all
+    @questions = @exam.questions.all
   end
 
   def show
