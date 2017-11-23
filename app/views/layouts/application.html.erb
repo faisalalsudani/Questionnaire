@@ -3,7 +3,6 @@
   <head>
     <title>Trivian</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
@@ -13,7 +12,9 @@
     <div class="container">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
-      <%= yield %>
+      <div class="fuelux">
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>

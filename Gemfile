@@ -12,6 +12,7 @@ gem 'rails', '~> 5.1.4'
 gem 'devise', '~> 4.2'
 # Use Bootstrap for styling
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'fuelux-rails-sass'
 
 # Use jQuery for easier javascript
 gem 'jquery-rails', '~> 4.3.1'

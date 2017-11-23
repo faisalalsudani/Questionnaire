@@ -1,23 +1,40 @@
 <%= form_for [@exam, @submission]  do |f| %>
-  <ul class="questions">
-      <% @questions.each do |question| %>
-      <li>
-        <%= question.title %>
-        <ol class="answers">
+<div class="wizard" data-initialize="wizard" id="myWizard">
+<div class="steps-container">
+	<ul class="steps">
+    <% @questions.each_with_index do |question, index| %>
+		<li data-step="<%= index + 1 %>" data-name="campaign" class="active">
+			<span class="badge"><%= index + 1 %></span>
+			<span class="chevron"></span>
+		</li>
+    <% end %>
+
+    <div class="step-content">
+      <% @questions.each_with_index do |question, index| %>
+      <div class="step-pane active sample-pane alert" data-step="<%= index + 1 %>">
+        <h4><%= question.title %></h4>
+        <hr>
           <% question.answers.each_with_index do |answer, index| %>
-          <li>
+          <p>
             <%= radio_button_tag("submission[ann][#{question.id}]", answer) %>
             <%= label("answer_".concat(answer), answer) %>
-          </li>
+          </p>
           <% end %>
-        </ol>
-      </li>
-      <%= will_paginate @questions, :page_links => false %>
-
+      </div>
       <% end %>
-  </ul>
-<br>
-<br>
+    </div>
+    
+	</ul>
+</div>
+
+<div class="actions">
+  	<button type="button" class="btn btn-default btn-prev">
+		<span class="glyphicon glyphicon-arrow-left"></span>Prev</button>
+
+    <button type="button" class="btn btn-primary btn-next">Next
+		<span class="glyphicon glyphicon-arrow-right"></span></button>
+    <%= f.submit "Submit", class: "btn btn-primary " %>
+</div>
+</div>
 <%= f.hidden_field :user_id, :value => current_user.id %>
-<%= f.submit "Submit", class: "btn btn-primary " %>
 <% end %>
