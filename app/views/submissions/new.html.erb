@@ -9,9 +9,10 @@
 		</li>
     <% end %>
 
-    <div class="step-content">
+    <div class="step-content questions">
       <% @questions.each_with_index do |question, index| %>
-      <div class="step-pane active sample-pane alert" data-step="<%= index + 1 %>">
+      <div class="step-pane active sample-pane question" data-step="<%= index + 1 %>">
+        <span id="myspan"></span>
         <h4><%= question.title %></h4>
         <hr>
           <% question.answers.each_with_index do |answer, index| %>
@@ -23,17 +24,15 @@
       </div>
       <% end %>
     </div>
-    
+
 	</ul>
 </div>
 
 <div class="actions">
-  	<button type="button" class="btn btn-default btn-prev">
-		<span class="glyphicon glyphicon-arrow-left"></span>Prev</button>
+  	<button type="button" class="btn btn-default btn-prev">Prev</button>
 
-    <button type="button" class="btn btn-primary btn-next">Next
-		<span class="glyphicon glyphicon-arrow-right"></span></button>
-    <%= f.submit "Submit", class: "btn btn-primary " %>
+    <button type="button" class="btn btn-primary btn-next">Next</button>
+    <%= f.submit "Submit", class: "btn btn-primary btn-submit" %>
 </div>
 </div>
 <%= f.hidden_field :user_id, :value => current_user.id %>
