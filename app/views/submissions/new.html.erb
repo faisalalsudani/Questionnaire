@@ -1,5 +1,7 @@
 <%= form_for [@exam, @submission]  do |f| %>
-<div class="wizard" data-initialize="wizard" id="myWizard">
+<div id="timer"></div>
+
+<div class="wizard" data-initialize="wizard" id="questionFrom">
 <div class="steps-container">
 	<ul class="steps">
     <% @questions.each_with_index do |question, index| %>
@@ -8,23 +10,9 @@
 			<span class="chevron"></span>
 		</li>
     <% end %>
-
     <div class="step-content questions">
-      <% @questions.each_with_index do |question, index| %>
-      <div class="step-pane active sample-pane question" data-step="<%= index + 1 %>">
-        <span id="myspan"></span>
-        <h4><%= question.title %></h4>
-        <hr>
-          <% question.answers.each_with_index do |answer, index| %>
-          <p>
-            <%= radio_button_tag("submission[ann][#{question.id}]", answer) %>
-            <%= label("answer_".concat(answer), answer) %>
-          </p>
-          <% end %>
-      </div>
-      <% end %>
+        <%= render "question" %>
     </div>
-
 	</ul>
 </div>
 
