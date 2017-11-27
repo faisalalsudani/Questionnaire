@@ -1,12 +1,26 @@
 <% @questions.each_with_index do |question, index| %>
 <div id="question_id" data-id="<%= index %>" class="step-pane active sample-pane question" data-step="<%= index + 1 %>">
-    <h4><%= question.title %></h4>
-  <hr>
+  <h4><%= index + 1 %>) <%= question.title %></h4>
+
+  <% if question.sort.first === "number" %>
+    <hr>
+    <% question.answers.each_with_index do |answer, index| %>
+    <p>
+      <%= number_field("submission[ann][#{question.id}]", answer) %>
+    </p>
+    <% end %>
+  <% elsif question.sort.first === "open_question" %>
+    <hr>
     <% question.answers.each_with_index do |answer, index| %>
     <p>
       <%= radio_button_tag("submission[ann][#{question.id}]", answer) %>
       <%= label("answer_".concat(answer), answer) %>
     </p>
     <% end %>
+  <% else %>
+    <p>nothing</p>
+  <% end %>
+
+
 </div>
 <% end %>
