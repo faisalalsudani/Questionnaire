@@ -1,35 +1,96 @@
 <%= form_for [@exam, @question] do |f|  %>
-<%= f.label :title, 'Question' %>
-<%= f.text_field :title, class: "form-control" %>
-<br>
-<%= f.label 'Timer' %> <br>
-<%= f.radio_button :timer, "yes", id: "yes"%>
-<%= f.label :timer, 'yes' %>
+  <div class="question-title">
+    <%= f.label :title, 'Question' %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+  <hr>
+  <div class="time" style="margin-top:20px;">
+    <div class="form-check">
+      <%= f.label 'Gevaarherkenning vragen' %> <br>
+      <label class="form-check-label">
+        <%= f.radio_button :timer, true, id: "time-yes", class: "form-check-input" %>
+        Ja
+      </label>
+      <br>
+      <label class="form-check-label">
+        <%= f.radio_button :timer, false, id: "time-no", class: "form-check-input" %>
+        Nee
+      </label>
+    </div>
+  </div>
+  <hr>
 
-<br>
-<br>
-<%= f.label :sort, 'Open question' %>
-<%= radio_button_tag 'question[sort][]','open_question', id: 'sort', class: "form-control"%><br>
-<%= f.label :sort, 'Number' %>
-<%= radio_button_tag 'question[sort][]','number', id: 'sort', class: "form-control"%><br>
-<br>
-<br>
-<%= f.label :answers %> <br>
-<%= f.text_field :answers, name: "question[answers][]", class: "form-control" %>
-<%= f.radio_button :correct, "1"%>
-<br><br>
-<%= f.text_field :answers, name: "question[answers][]", class: "form-control" %>
-<%= f.radio_button :correct, "2"%>
-<br><br>
-<%= f.text_field :answers, name: "question[answers][]", class: "form-control" %>
-<%= f.radio_button :correct, "3"%>
-<br><br>
-<%= f.text_field :answers, name: "question[answers][]", class: "form-control" %>
-<%= f.radio_button :correct, "4"%>
-<br>
+  <div class="question-sort form-check" style="margin-top:20px;">
+    <%= f.label 'Questions type:' %> <br>
+    <label class="form-check-label">
+      <%= radio_button_tag 'question[sort][]','number', id: 'sort', class: "form-check-input"%>
+      Invullen
+    </label>
+    <br>
+    <label class="form-check-label">
+      <%= radio_button_tag 'question[sort][]','yes_no', id: 'sort', class: "form-check-input"%>
+      Ja/Nee
+    </label>
+    <br>
+    <label class="form-check-label">
+      <%= radio_button_tag 'question[sort][]','open_question', id: 'sort', class: "form-check-input"%>
+      [A,B,C] vragen
+    </label>
+  </div>
+  <hr>
 
+  <div class="answers form-check" style="margin-top:20px;">
+    <%= f.label :answers %> <br>
 
-<br>
-<%= f.submit 'Save', class: 'btn btn-success' %>
+    <%= f.text_field :answers, name: "question[answers][]", class: "form-check-input form-control" %>
+    <label class="form-check-label">
+      <%= f.radio_button :correct, "1"%>
+      Goed
+    </label>
+    <br><br>
+    <%= f.text_field :answers, name: "question[answers][]", class: "form-check-input form-control" %>
+    <label class="form-check-label">
+      <%= f.radio_button :correct, "2"%>
+      Goed
+    </label>
+    <br><br>
+    <%= f.text_field :answers, name: "question[answers][]", class: "form-check-input form-control" %>
+    <label class="form-check-label">
+      <%= f.radio_button :correct, "3"%>
+      Goed
+    </label>
+    <br><br>
+    <%= f.text_field :answers, name: "question[answers][]", class: "form-check-input form-control" %>
+    <label class="form-check-label">
+      <%= f.radio_button :correct, "4"%>
+      Goed
+    </label>
+    <br>
+  </div>
+
+  <div class="answers-2 form-check" style="margin-top:20px;">
+    <%= f.label :answers %> <br>
+    <%= f.text_field :answers, name: "question[answers][]", value: "Remmen", class: "form-check-input form-control" %>
+    <label class="form-check-label">
+      <%= f.radio_button :correct, "1"%>
+      Goed
+    </label>
+    <br><br>
+    <%= f.text_field :answers, name: "question[answers][]",value: "Gas loslaten", class: "form-check-input form-control" %>
+    <label class="form-check-label">
+      <%= f.radio_button :correct, "2"%>
+      Goed
+    </label>
+    <br><br>
+    <%= f.text_field :answers, name: "question[answers][]",value: "Niets", class: "form-check-input form-control" %>
+    <label class="form-check-label">
+      <%= f.radio_button :correct, "3"%>
+      Goed
+    </label>
+  </div>
+
+  <div class="submit">
+    <%= f.submit 'Save', class: 'btn btn-success' %>
+  </div>
 
 <% end %>
