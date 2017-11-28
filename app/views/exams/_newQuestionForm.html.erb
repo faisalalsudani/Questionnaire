@@ -17,13 +17,14 @@
         Nee
       </label>
     </div>
+    <hr>
   </div>
-  <hr>
+
 
   <div class="question-sort form-check" style="margin-top:20px;">
     <%= f.label 'Questions type:' %> <br>
     <label class="form-check-label">
-      <%= radio_button_tag 'question[sort][]','number', id: 'sort', class: "form-check-input"%>
+      <%= radio_button_tag 'question[sort][]','number', id: 'sort', class: "invullen form-check-input"%>
       Invullen
     </label>
     <br>
@@ -36,8 +37,9 @@
       <%= radio_button_tag 'question[sort][]','open_question', id: 'sort', class: "form-check-input"%>
       [A,B,C] vragen
     </label>
+    <hr>
   </div>
-  <hr>
+
 
   <div class="answers form-check" style="margin-top:20px;">
     <%= f.label :answers %> <br>
@@ -48,18 +50,21 @@
       Goed
     </label>
     <br><br>
+
     <%= f.text_field :answers, name: "question[answers][]", class: "form-check-input form-control" %>
     <label class="form-check-label">
       <%= f.radio_button :correct, "2"%>
       Goed
     </label>
     <br><br>
+
     <%= f.text_field :answers, name: "question[answers][]", class: "form-check-input form-control" %>
     <label class="form-check-label">
       <%= f.radio_button :correct, "3"%>
       Goed
     </label>
     <br><br>
+
     <%= f.text_field :answers, name: "question[answers][]", class: "form-check-input form-control" %>
     <label class="form-check-label">
       <%= f.radio_button :correct, "4"%>
@@ -70,24 +75,56 @@
 
   <div class="answers-2 form-check" style="margin-top:20px;">
     <%= f.label :answers %> <br>
+
     <%= f.text_field :answers, name: "question[answers][]", value: "Remmen", class: "form-check-input form-control" %>
     <label class="form-check-label">
-      <%= f.radio_button :correct, "1"%>
+      <%= f.radio_button :correct, "5"%>
       Goed
     </label>
     <br><br>
+
     <%= f.text_field :answers, name: "question[answers][]",value: "Gas loslaten", class: "form-check-input form-control" %>
     <label class="form-check-label">
-      <%= f.radio_button :correct, "2"%>
+      <%= f.radio_button :correct, "6"%>
       Goed
     </label>
     <br><br>
+
     <%= f.text_field :answers, name: "question[answers][]",value: "Niets", class: "form-check-input form-control" %>
     <label class="form-check-label">
-      <%= f.radio_button :correct, "3"%>
+      <%= f.radio_button :correct, "7"%>
       Goed
     </label>
   </div>
+
+  <div class="answers-ja form-check" style="margin-top:20px;">
+    <%= f.label :answers %> <br>
+
+    <%= f.text_field :answers, name: "question[answers][]", value: "Ja", class: "form-check-input form-control" %>
+    <label class="form-check-label">
+      <%= f.radio_button :correct, "9"%>
+      Goed
+    </label>
+    <br><br>
+
+    <%= f.text_field :answers, name: "question[answers][]",value: "Nee", class: "form-check-input form-control" %>
+    <label class="form-check-label">
+      <%= f.radio_button :correct, "10"%>
+      Goed
+    </label>
+    <br><br>
+  </div>
+
+  <div class="answers-input form-check" style="margin-top:20px;">
+    <p>Correct answer</p>
+    <%= f.number_field :answers, name: "question[answers][]", class: "form-check-input form-control" %>
+    <%= f.hidden_field :correct, :value => "8" %>
+    <br><br>
+  </div>
+
+  <br>
+  <br>
+  <hr>
 
   <div class="submit">
     <%= f.submit 'Save', class: 'btn btn-success' %>
