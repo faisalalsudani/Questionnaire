@@ -10,6 +10,7 @@ class SubmissionsController < ApplicationController
     @submission = @exam.submissions.new
     @questions_total = @exam.questions.all
     @questions = @exam.questions.all
+
   end
 
   def show

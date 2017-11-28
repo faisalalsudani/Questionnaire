@@ -9,51 +9,49 @@
 
 $(document).ready(function() {
 
-  $('.btn-submit').hide();
-  $('.btn-prev').hide();
-  var totalQuestion = $('.step-pane').length;
-  var currentStep = $('#questionFrom').on('changed.fu.wizard', function(evt, item) {
-    console.log(item.step);
+  // Timer
+  var counter = 1;
+  var currentStepp = $('#questionFrom').wizard('selectedItem').step; // return step = 1
 
-    if (item.step >= 3) {
-      $('#timer2').remove();
-      $('.btn-prev').show();
-    } else {
-      $('.btn-prev').hide();
+  function countdown(){
+    setTimeout(countdown, 1000);
+    $('#counter').text(counter)
+    counter++
+
+    if (counter == 4) {
+      $('#questionFrom').wizard('next');
+      counter=1
     }
 
-  });
-
-
-
-
-  var timer;
-  function myTimer(sec) {
-    if (timer) clearInterval(timer);
-    timer = setInterval(function() {
-      $('#timer').text(sec--);
-      $('#pbar_innerdiv').css("width", timer);
-      $('#pbar_innerdiv').css("max-width",timer);
-      $('#pbar_innertext').text(sec + "%");
-
-      if (sec == -1) {
-        clearInterval(timer);
-        $('#questionFrom').wizard('next');
-        $(function() {
-          myTimer(9);
-        });
+    var currentStep = $('#questionFrom').on('changed.fu.wizard', function(evt, item){
+      if (item.step >= 3) {
+        $('#counter').remove();
+        $('.btn-prev').show();
+        countdown().stop();
+      } else {
+        $('.btn-prev').hide();
       }
-    }, 1000);
+    });
+
   }
 
-  $(function() {
-    myTimer(9);
-  });
 
 
+  countdown();
+
+
+
+
+  $('.btn-submit').hide();
+  $('.btn-prev').hide();
+
+
+  // Add new question logic & animation
   $('.answers').hide();
   $('.answers-2').hide();
   $('.question-sort').hide();
+  $('.answers-input').hide();
+  $('.answers-ja').hide();
 
   $("#time-yes").click(function(){
     if ($('#time-yes').is(':checked')){
@@ -62,11 +60,36 @@ $(document).ready(function() {
       $('.answers-2').show(1000);
     }
   });
+
   $("#time-no").click(function(){
     if ($('#time-no').is(':checked')){
       $('.question-sort').show(1000);
       $('.answers').show(1000);
       $('.answers-2').hide(1000);
+    }
+  });
+
+  $("#question_sort__number").click(function(){
+    if ($('#question_sort__number').is(':checked')){
+      $('.answers-input').show(1000);
+      $('.answers').hide(1000);
+      $('.answers-ja').hide(1000);
+    }
+  });
+
+  $("#question_sort__yes_no").click(function(){
+    if ($('#question_sort__yes_no').is(':checked')){
+      $('.answers-ja').show(1000);
+      $('.answers').hide(1000);
+      $('.answers-input').hide(1000);
+    }
+  });
+
+  $("#question_sort__open_question").click(function(){
+    if ($('#question_sort__open_question').is(':checked')){
+      $('.answers-ja').hide(1000);
+      $('.answers-input').hide(1000);
+      $('.answers').show(1000);
     }
   });
 
