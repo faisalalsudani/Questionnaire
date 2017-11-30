@@ -1,4 +1,4 @@
 class Submission < ApplicationRecord
   belongs_to :user
-  belongs_to :exam, dependent: :destroy
+  belongs_to :exam
 end

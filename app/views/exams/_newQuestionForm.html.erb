@@ -102,14 +102,14 @@
 
     <%= f.text_field :answers, name: "question[answers][]", value: "Ja", class: "form-check-input form-control" %>
     <label class="form-check-label">
-      <%= f.radio_button :correct, "9"%>
+      <%= f.radio_button :correct, "8"%>
       Goed
     </label>
     <br><br>
 
     <%= f.text_field :answers, name: "question[answers][]",value: "Nee", class: "form-check-input form-control" %>
     <label class="form-check-label">
-      <%= f.radio_button :correct, "10"%>
+      <%= f.radio_button :correct, "9"%>
       Goed
     </label>
     <br><br>
@@ -118,7 +118,10 @@
   <div class="answers-input form-check" style="margin-top:20px;">
     <p>Correct answer</p>
     <%= f.number_field :answers, name: "question[answers][]", class: "form-check-input form-control" %>
-    <%= f.hidden_field :correct, :value => "8" %>
+    <label class="form-check-label">
+      <%= f.radio_button :correct, "10"%>
+      Goed
+    </label>
     <br><br>
   </div>
 

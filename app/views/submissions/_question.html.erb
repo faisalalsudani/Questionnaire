@@ -1,26 +1,55 @@
-
 <div id="all-questions"><% @questions.to_json %></div>
 <% @questions.each_with_index do |question, index| %>
 <div id="question_id" data-id="<%= index %>" class="step-pane active sample-pane question" data-step="<%= index + 1 %>">
   <h4><%= index + 1 %>) <%= question.title %></h4>
-  <div id="question_type" value="<%= question.sort.first %>" data-id="<%= question.id %>"></div>
+  <div id="question_type" value="<%= question.sort.first %>" data-id="<%= question.id %>"><%= question.sort.first %></div>
+
+
+
+
+
   <% if question.sort.first === "number" %>
     <hr>
     <% question.answers.each_with_index do |answer, index| %>
-    <p>
-      <%= number_field("submission[ann][#{question.id}]", answer) %>
-    </p>
+      <p>
+        <% if index > 8 %>
+        <%= number_field_tag("submission[ann][#{question.id}]") %>
+        <% end %>
+      </p>
     <% end %>
-  <% elsif question.sort.first === "open_question" %>
+
+  <% elsif question.timer == true %>
+  <hr>
+    <% question.answers.each_with_index do |answer, index| %>
+    <p>
+      <% if index > 3 && index < 7 %>
+        <%= radio_button_tag("submission[ann][#{question.id}]", answer) %>
+        <%= label("answer_".concat(answer), answer) %>
+      <% end %>
+    </p>
+  <% end %>
+
+  <% elsif question.sort.first === "open_question"  %>
     <hr>
     <% question.answers.each_with_index do |answer, index| %>
     <p>
-      <%= radio_button_tag("submission[ann][#{question.id}]", answer) %>
-      <%= label("answer_".concat(answer), answer) %>
+      <% if index < 4 %>
+        <%= radio_button_tag("submission[ann][#{question.id}]", answer) %>
+        <%= label("answer_".concat(answer), answer) %>
+      <% end %>
     </p>
-    <% end %>
+  <% end %>
+
   <% else %>
-    <p>nothing</p>
+    <hr>
+    <% question.answers.each_with_index do |answer, index| %>
+    <p>
+      <% if index > 6 && index < 9 %>
+        <%= radio_button_tag("submission[ann][#{question.id}]", answer) %>
+        <%= label("answer_".concat(answer), answer) %>
+      <% end %>
+    </p>
+      <% end %>
   <% end %>
 
 
