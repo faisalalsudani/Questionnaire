@@ -7,7 +7,6 @@
 		<li id="li-step" data-step="<%= index + 1 %>" class="active">
       <span id="step"><%= index + 1 %></span>
 		</li>
-
       <%= content_tag "div", id:"questions", data:{questions: question} do %>
       <% end %>
     <% end %>
@@ -16,7 +15,6 @@
   <div class="step-content questions">
       <%= render "question" %>
   </div>
-
 </div>
 
 <div class="actions">

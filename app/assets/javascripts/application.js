@@ -12,6 +12,7 @@ $(document).ready(function() {
   // Timer
   var counter = 1;
   var currentStepp = $('#questionFrom').wizard('selectedItem').step; // return step = 1
+  $('.btn-submit').show();
 
   function countdown(){
     setTimeout(countdown, 1000);
@@ -28,9 +29,10 @@ $(document).ready(function() {
         $('#counter').remove();
         $('.btn-prev').show();
         countdown().stop();
-      } else {
+      } else  {
         $('.btn-prev').hide();
       }
+
     });
 
   }
@@ -42,7 +44,6 @@ $(document).ready(function() {
 
 
 
-  $('.btn-submit').hide();
   $('.btn-prev').hide();
 
 
