@@ -3,21 +3,32 @@
   <hr>
 
   <% @score = 0 %>
+  <% @score_2 = 0 %>
   <%= @submission.ann.length %>
   <% @exam.questions.each do |question| %>
 
     <p><% question.id %></p>
-
     <% @submission.ann.each do |key, value| %>
       <% @key = key %>
       <% if question.id == key.to_i %>
+        <%= question.timer %>
         <p>Given answer: <%= @given_anwer = value %></p>
         <p><% @correct = question.correct.to_i - 1 %></p>
         <p>Correct answer: <%= @correct_answer = question.answers[@correct] %></p>
         <p>Resulte: <%= @correct_answer == @given_anwer %></p>
-        <% if @correct_answer == @given_anwer %>
-          <% @score = @score + 1 %>
+
+        <% if question.timer == true %>
+          <% if @correct_answer == @given_anwer %>
+            <% @score = @score + 1 %>
+          <% end %>
+        <% else %>
+          <% if @correct_answer == @given_anwer %>
+            <% @score_2 = @score_2 + 1 %>
+          <% end %>
         <% end %>
+
+
+
         <hr>
       <% end %>
 
@@ -27,7 +38,9 @@
 
 
   <hr>
-  <%= @score %>
+  <p>Gevaarherkenning: <%= @score %> goed van <%= @exam.questions.where(timer: true).length %></p>
+  <p>Rest: <%= @score_2 %> goed van <%= @exam.questions.where(timer: false).length %></p>
+  <hr>
   <% if @score > (@exam.questions.length / 2) %>
     <p>Congrats</p>
   <% end %>
