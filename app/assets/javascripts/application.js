@@ -11,6 +11,13 @@ $(document).ready(function() {
 
   $("questionFrom").bind('submit', submitSubmission);
 
+  $(window).keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+
   function submitSubmission(event) {
     event.preventDefault();
   }
@@ -103,6 +110,19 @@ $(document).ready(function() {
   });
 
 
+  // Showing the result of the exam
+  $('.congratulations').hide();
+  $('.try_again').hide();
+
+  var tryAgain = $('.try_again p').text();
+  var cong = $('.congratulations p').text();
+
+  if (cong === "Congratulations!") {
+    $('.result').html("<p class='gefe bg-success text-white'>Gefeliciteerd!</p>");
+  }
+  if (tryAgain === "Try again") {
+    $('.result').html("<p class='again bg-danger text-white'>Jammer, probeer het nog een keer!</p>");
+  }
 
 
  });
