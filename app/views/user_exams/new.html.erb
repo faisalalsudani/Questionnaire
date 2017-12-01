@@ -1,0 +1,16 @@
+<div class="row">
+<%= form_for UserExam.new  do |f| %>
+  <%= f.select :user_id, User.pluck(:id), class: "form-control"  %>
+<br>
+  <% @exams.each do |ex| %>
+    <%= f.label "#{ex.title}" %> <br>
+    <label class="form-check-label">
+      <%= check_box_tag 'user_exam[exams][]', ex.id , id: 'exam', class: "form-check-input"%>
+      <%= ex.title %>
+    </label>
+  <% end %>
+
+  <br>
+  <%= f.submit "Create", class: "btn btn-primary add-pair" %>
+<% end %>
+</div>

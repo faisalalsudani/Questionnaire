@@ -15,4 +15,6 @@ Rails.application.routes.draw do
     resources :answers
   end
 
+  resources :user_exams 
+
 end

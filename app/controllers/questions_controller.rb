@@ -18,15 +18,12 @@ class QuestionsController < ApplicationController
 
   def create
     exam = Exam.find(params[:exam_id])
-
     @question = exam.questions.create(question_params)
-
       if @question.save
         redirect_to @question.exam, notice: "Exam created!"
       else
         render :new
       end
-
   end
 
 
