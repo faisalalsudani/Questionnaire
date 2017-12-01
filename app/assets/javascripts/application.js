@@ -9,10 +9,28 @@
 
 $(document).ready(function() {
 
+  $("questionFrom").bind('submit', submitSubmission);
+
+  function submitSubmission(event) {
+    event.preventDefault();
+  }
+
+  $('.btn-prev').hide();
+  $('.btn-submit').hide();
+
   // Timer
   var counter = 1;
   var currentStepp = $('#questionFrom').wizard('selectedItem').step; // return step = 1
-  $('.btn-submit').show();
+
+  var showSubmit = $('#questionFrom').on('changed.fu.wizard', function(evt, item){
+    var totalQuestion = $('.step-pane').length;
+
+    if (item.step == totalQuestion) {
+      $('.btn-submit').show(1000);
+      $('.btn-next').hide(1000);
+    }
+    console.log(item.step, totalQuestion);
+  });
 
   function countdown(){
     setTimeout(countdown, 1000);
@@ -32,19 +50,9 @@ $(document).ready(function() {
       } else  {
         $('.btn-prev').hide();
       }
-
     });
-
   }
-
-
-
   countdown();
-
-
-
-
-  $('.btn-prev').hide();
 
 
   // Add new question logic & animation
