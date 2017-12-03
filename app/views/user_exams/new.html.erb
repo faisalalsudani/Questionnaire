@@ -1,16 +1,23 @@
-<div class="row">
 <%= form_for UserExam.new  do |f| %>
-  <%= f.select :user_id, User.pluck(:id), class: "form-control"  %>
 <br>
+  <!-- <%= f.select :user_id, User.pluck(:id), class: "form-control"  %> -->
+  <% @users.each do |us| %>
+    <label class="form-check-label">
+      <%= radio_button_tag 'user_exam[user_id]', us.id , id: 'exam', class: "form-check-input"%>
+      <%= us.email %>
+      <br>
+    </label><br>
+  <% end %>
+  <br>
+  <br>
   <% @exams.each do |ex| %>
-    <%= f.label "#{ex.title}" %> <br>
     <label class="form-check-label">
       <%= check_box_tag 'user_exam[exams][]', ex.id , id: 'exam', class: "form-check-input"%>
       <%= ex.title %>
-    </label>
+      <br>
+    </label><br>
   <% end %>
 
   <br>
   <%= f.submit "Create", class: "btn btn-primary add-pair" %>
 <% end %>
-</div>

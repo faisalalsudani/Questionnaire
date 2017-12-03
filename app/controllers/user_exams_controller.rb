@@ -7,10 +7,12 @@ class UserExamsController < ApplicationController
   def new
     @userExam = UserExam.new
     @exams = Exam.all
+    @users = User.all
   end
 
   def create
     @exams = Exam.all
+    @users = User.all
     @userExam = UserExam.new(userExam_params)
     if @userExam.save
       redirect_to @userExam, notice: "Exam created!"
